@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Magister</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Conversas</string>
+    <string name="tab_text_2">Buscar</string>
+    <string name="tab_text_3">Perfil</string>
+    <string name="entrar">Entrar</string>
+    <string name="sair">Sair</string>
+    <string name="text_cadastro">Criar uma conta</string>
+    <string name="title_cadastro">Cadastre-se</string>
+    <string name="title_topicos">Tópicos de maior conhecimento:</string>
+    <string name="title_escola">Instituição de ensino:</string>
 </resources>
