@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "779837475298",
+    "project_id": "magister-c4f86",
+    "storage_bucket": "magister-c4f86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779837475298:android:9cc1e80ef1d920459151bb",
+        "android_client_info": {
+          "package_name": "com.example.magister"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779837475298-r0da2du0h34t4is697ckv1rmd1au3aaa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwgeB_GhyS5-m3BVYUhMWjy2K4e0ku8DQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779837475298-r0da2du0h34t4is697ckv1rmd1au3aaa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
