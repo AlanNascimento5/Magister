@@ -53,32 +53,24 @@
                 style="@style/Edit_Text"
                 android:hint="Senha"
                 android:inputType="textPassword"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/container_components"
                 app:layout_constraintEnd_toEndOf="@id/container_components"
                 app:layout_constraintTop_toBottomOf="@id/edit_email"/>
 
-            <ImageView
-                android:id="@+id/eye1"
+
+            <ImageButton
+                android:id="@+id/eye"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/ic_eye"
+                android:background="@color/white"
                 android:layout_marginLeft="200dp"
                 app:layout_constraintStart_toStartOf="@id/edit_senha"
                 app:layout_constraintEnd_toEndOf="@id/edit_senha"
                 app:layout_constraintTop_toTopOf="@id/edit_senha"
                 app:layout_constraintBottom_toBottomOf="@id/edit_senha"/>
 
-            <ImageView
-                android:id="@+id/eyeoff1"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_eyeoff"
-                android:visibility="invisible"
-                android:layout_marginLeft="200dp"
-                app:layout_constraintStart_toStartOf="@id/edit_senha"
-                app:layout_constraintEnd_toEndOf="@id/edit_senha"
-                app:layout_constraintTop_toTopOf="@id/edit_senha"
-                app:layout_constraintBottom_toBottomOf="@id/edit_senha"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_entrar"

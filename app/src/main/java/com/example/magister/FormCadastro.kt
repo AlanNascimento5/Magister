@@ -4,11 +4,14 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
+import android.text.method.SingleLineTransformationMethod
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.appcompat.widget.DrawableUtils
@@ -40,6 +43,42 @@ class FormCadastro : AppCompatActivity() {
         val spinner1 = findViewById<Spinner>(R.id.spinner1) //instaciando os objetos...
         val spinner2 = findViewById<Spinner>(R.id.spinner2)
         val spinner3 = findViewById<Spinner>(R.id.spinner3)
+
+        binding.eye1.setOnClickListener { //Código para fazer a senha ficar vísivel
+            val editTextPassword = findViewById<EditText>(R.id.edit_senha1)
+            val imageButtonShowPassword = findViewById<ImageButton>(R.id.eye1)
+
+            if (editTextPassword.transformationMethod is PasswordTransformationMethod) {
+                // Torna a senha visível
+                editTextPassword.transformationMethod = SingleLineTransformationMethod.getInstance()
+                imageButtonShowPassword.setImageResource(R.drawable.ic_eyeoff)
+            } else {
+                // Torna a senha oculta
+                editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                imageButtonShowPassword.setImageResource(R.drawable.ic_eye)
+            }
+
+            // Move o cursor para o final do texto
+            editTextPassword.setSelection(editTextPassword.text.length)
+        }
+
+        binding.eye2.setOnClickListener { //Código para fazer a senha ficar vísivel
+            val editTextPassword = findViewById<EditText>(R.id.edit_confirmar_senha)
+            val imageButtonShowPassword = findViewById<ImageButton>(R.id.eye2)
+
+            if (editTextPassword.transformationMethod is PasswordTransformationMethod) {
+                // Torna a senha visível
+                editTextPassword.transformationMethod = SingleLineTransformationMethod.getInstance()
+                imageButtonShowPassword.setImageResource(R.drawable.ic_eyeoff)
+            } else {
+                // Torna a senha oculta
+                editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                imageButtonShowPassword.setImageResource(R.drawable.ic_eye)
+            }
+
+            // Move o cursor para o final do texto
+            editTextPassword.setSelection(editTextPassword.text.length)
+        }
 
         spinner1.adapter = ArrayAdapter<String>(
             this,
@@ -154,18 +193,19 @@ class FormCadastro : AppCompatActivity() {
     private fun SalvarDadosUsuario() { //Essa é uma funçãozinha para os id e salvar o nome dos usuarios no firebase
         val nome = binding.editNome.text.toString()
         val escola = binding.editEscola.text.toString()
-        val materia1 = binding.spinner1.toString()
-        val materia2 = binding.spinner1.toString()
-        val materia3 = binding.spinner1.toString()
+        val materia1 = binding.spinner1.selectedItem as String
+        val materia2 = binding.spinner2.selectedItem as String
+        val materia3 = binding.spinner3.selectedItem as String
 
         val db = FirebaseFirestore.getInstance()
 
         val usuarios = hashMapOf<String, Any?>()
         usuarios.put("nome", nome)
+        usuarios.put("escola", escola)
         usuarios.put("materia 1", materia1)
         usuarios.put("materia 2", materia2)
         usuarios.put("materia 3", materia3)
-        usuarios.put("escola", escola)
+
 
         val usuarioID = FirebaseAuth.getInstance().currentUser!!.uid
 

@@ -82,13 +82,50 @@ class PerfilActivity : AppCompatActivity() {
         super.onStart()
 
         val email = FirebaseAuth.getInstance().currentUser!!.email
-        val usuarioID = FirebaseAuth.getInstance().currentUser!!.uid
+        val usuarioID = FirebaseAuth.getInstance().currentUser!!.uid // Obtém o valor do Firebase
 
         db.collection("Usuarios").document(usuarioID)
             .addSnapshotListener(EventListener { value, error ->
                 if (value != null) {
+                    //Recuperando dados do tipo Text e EditText
                     binding.textNomeUsuario.setText(value.getString("nome"))
                     binding.textEmailUsuario.setText(email)
+                    binding.editEscola.setText(value.getString("escola"))
+
+                    //Recuperando dados do tipo Spinner
+                    val spinner1 = binding.spinner1
+                    val spinner2 = binding.spinner2
+                    val spinner3 = binding.spinner3
+                    val valueFromFirebase1 = value.getString("materia 1")
+                    val valueFromFirebase2 = value.getString("materia 2")
+                    val valueFromFirebase3 = value.getString("materia 3")
+                    val adapter1 = spinner1.adapter
+                    val adapter2 = spinner2.adapter
+                    val adapter3 = spinner3.adapter
+
+                    for (i in 0 until adapter1.count) { //Recuperando do primeiro Spinner
+                        val item = adapter1.getItem(i).toString()
+                        if (item == valueFromFirebase1) {
+                            spinner1.setSelection(i)
+                            break
+                        }
+                    }
+
+                    for (i in 0 until adapter2.count) { // Recuperando do segundo Spinner
+                        val item = adapter2.getItem(i).toString()
+                        if (item == valueFromFirebase2) {
+                            spinner2.setSelection(i)
+                            break
+                        }
+                    }
+
+                    for (i in 0 until adapter3.count) { // Recuperando do terceiro Spinner
+                        val item = adapter3.getItem(i).toString()
+                        if (item == valueFromFirebase3) {
+                            spinner3.setSelection(i)
+                            break
+                        }
+                    }
                 }
             })
     }

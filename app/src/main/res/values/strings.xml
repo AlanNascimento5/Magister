@@ -9,4 +9,5 @@
     <string name="title_cadastro">Cadastre-se</string>
     <string name="title_topicos">Tópicos de maior conhecimento:</string>
     <string name="title_escola">Instituição de ensino:</string>
+    <string name="description">Visibilidade ativada</string>
 </resources>
