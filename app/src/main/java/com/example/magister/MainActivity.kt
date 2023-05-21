@@ -1,15 +1,11 @@
 package com.example.magister
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import com.example.magister.ui.main.SectionsPagerAdapter
 import com.example.magister.databinding.ActivityMainBinding
+import com.example.magister.ui.fragments.SectionPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,17 +16,19 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = binding.viewPager
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = binding.tabs
-        tabs.setupWithViewPager(viewPager)
+        val tabLayout:  TabLayout = binding.tabs
+
         //val fab: FloatingActionButton = binding.fab
 
         //fab.setOnClickListener { view ->
         //    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
         //        .setAction("Action", null).show()
         //}
+        val pagerAdapter = SectionPagerAdapter(supportFragmentManager)
+        viewPager.adapter = pagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
     }
 }

@@ -12,16 +12,19 @@
         android:theme="@style/Theme.Magister"
         tools:targetApi="31">
         <activity
+            android:name=".FormLoginActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Magister.NoActionBar"/>
+        <activity
             android:name=".BuscarActivity"
             android:exported="false" />
         <activity
             android:name=".ConversasActivity"
             android:exported="false" />
         <activity
-            android:name=".FormLoginActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Magister.NoActionBar">
+            android:name=".SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,6 +40,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -7,16 +7,11 @@ import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.text.method.SingleLineTransformationMethod
 import android.util.Log
-import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Spinner
-import androidx.appcompat.widget.DrawableUtils
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import com.example.magister.databinding.ActivityFormCadastroBinding
 import com.example.magister.databinding.ActivityFormLoginBinding
 import com.google.android.material.snackbar.Snackbar
@@ -40,7 +35,7 @@ class FormCadastro : AppCompatActivity() {
 
         supportActionBar?.hide() // isso aqui só serve para tirar a barra feia que fica em cima do app
 
-        val spinner1 = findViewById<Spinner>(R.id.spinner1) //instaciando os objetos...
+        val spinner1 = findViewById<Spinner>(R.id.spinner1)
         val spinner2 = findViewById<Spinner>(R.id.spinner2)
         val spinner3 = findViewById<Spinner>(R.id.spinner3)
 
@@ -120,15 +115,27 @@ class FormCadastro : AppCompatActivity() {
         )
 
         binding.btCadastrar.setOnClickListener { view ->
+            //Esse aqui é um metodo para esconder o teclado quando o botão for apertado
+            val InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            InputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+
             val senha = binding.editSenha1.text.toString() //Declaração de váriaveis
             val confirmasenha = binding.editConfirmarSenha.text.toString()
             val email = binding.editEmail1.text.toString()
             val nome = binding.editNome.text.toString()
-
+            val senhaForte = verificarSenhaForte(senha)
 
             if (senha != confirmasenha) {
                 binding.editConfirmarSenha.error =
                     "A senha e a confimação de senha devem ser iguais!"
+            }
+            else if (senha.length < 8) {
+                binding.editConfirmarSenha.error =
+                    "A senha deve conter 8 digitos!"
+            }
+            else if (senhaForte == false) {
+                binding.editConfirmarSenha.error =
+                    "A senha deve conter: letras maiúsculas, letras minúsculas, símbolos e números!"
             }
             else if (nome.isEmpty()) {
                 binding.editNome.error = "Insira o nome!"
@@ -190,7 +197,7 @@ class FormCadastro : AppCompatActivity() {
     }
 
 
-    private fun SalvarDadosUsuario() { //Essa é uma funçãozinha para os id e salvar o nome dos usuarios no firebase
+    private fun SalvarDadosUsuario() { //Essa é uma funçãozinha para salvar os dados dos usuários no firebase
         val nome = binding.editNome.text.toString()
         val escola = binding.editEscola.text.toString()
         val materia1 = binding.spinner1.selectedItem as String
@@ -220,8 +227,31 @@ class FormCadastro : AppCompatActivity() {
 
     }
 
-    private fun IrParaTelaLogin() {//Função para mudar para o MainActivity quando é chamada
+    private fun IrParaTelaLogin() { //Função para mudar para o MainActivity quando é chamada
         val TelaLogin = Intent(this, ActivityFormLoginBinding::class.java)
         startActivity(TelaLogin)
     }
+
+    fun verificarSenhaForte(senha: String): Boolean {
+        // Verificar se a senha contém letras maiúsculas, minúsculas, números e símbolos
+        var temMaiuscula = false
+        var temMinuscula = false
+        var temNumero = false
+        var temCaracterEspecial = false
+        for (c in senha.toCharArray()) {
+            if (c.isUpperCase()) {
+                temMaiuscula = true
+            } else if (c.isLowerCase()) {
+                temMinuscula = true
+            } else if (c.isDigit()) {
+                temNumero = true
+            } else if (!c.isLetterOrDigit()) {
+                temCaracterEspecial = true
+            }
+        }
+
+        // Verificar se a senha atende a todos os critérios
+        return temMaiuscula && temMinuscula && temNumero && temCaracterEspecial
+    }
+
 }
