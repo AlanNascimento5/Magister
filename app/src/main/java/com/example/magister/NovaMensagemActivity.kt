@@ -1,6 +1,7 @@
 package com.example.magister
 
 
+//import ConversasActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.magister.ConversasActivity
+//import com.example.magister.ConversasActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -51,6 +52,7 @@ class NovaMensagemActivity : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val user = document.toObject(Usuarios::class.java)
+                    Log.d("NewMessage", "User: ${user.nome}, UID: ${user.uid}")
                     adapter.add(UserItem(user))
                 }
                 Log.d("NewMessage", "Users fetched successfully. Count: ${result.size()}")
@@ -62,7 +64,9 @@ class NovaMensagemActivity : AppCompatActivity() {
         adapter.setOnItemClickListener { item, view ->
             val userItem = item as UserItem
             val intent = Intent(view.context, ConversasActivity::class.java)
-            intent.putExtra(USER_KEY, userItem.user.nome)
+            intent.putExtra(USER_KEY, userItem.user.uid)
+            intent.putExtra("USERNAME", userItem.user.nome)
+            //intent.putExtra("USER_ID", userItem.user.uid) // Adicione essa linha para passar o ID do usuário selecionado
             startActivity(intent)
             finish()
         }
@@ -71,9 +75,6 @@ class NovaMensagemActivity : AppCompatActivity() {
     inner class UserItem(val user: Usuarios) : Item<GroupieViewHolder>() {
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
             viewHolder.itemView.findViewById<TextView>(R.id.username_textview_new_message).text = user.nome
-
-            //val imageView = viewHolder.itemView.findViewById<ImageView>(R.id.imageView)
-            //Picasso.get().load(user.profileImageUrl).into(imageView)
         }
 
         override fun getLayout(): Int {
