@@ -67,7 +67,7 @@ class FormLoginActivity : AppCompatActivity() {
     }
     //função para ir para tela principal (feed)
     private fun IrParaMainActivity() {
-        val TelaPerfil = Intent(this, PerfilActivity::class.java)
+        val TelaPerfil = Intent(this, ConversasActivity::class.java)
         startActivity(TelaPerfil)
     }
 

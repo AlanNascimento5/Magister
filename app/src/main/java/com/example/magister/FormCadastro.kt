@@ -18,6 +18,7 @@ import com.example.magister.databinding.ActivityFormCadastroBinding
 import com.example.magister.databinding.ActivityFormLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.ActionCodeUrl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -184,4 +185,10 @@ class FormCadastro : AppCompatActivity() {
         val TelaLogin = Intent(this, ActivityFormLoginBinding::class.java)
         startActivity(TelaLogin)
     }
+
+    class User(val uid: String, val username: String, val profileImageUrl: String) {
+        constructor() : this(uid = "", username = "", profileImageUrl = "")
+    }
+
 }
+
