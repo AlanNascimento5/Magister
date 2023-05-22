@@ -24,7 +24,7 @@
         android:id="@+id/logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/logo2"
         android:layout_margin="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,23 +81,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_email1"/>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/eye1"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/ic_eye"
-        android:layout_marginLeft="200dp"
-        app:layout_constraintStart_toStartOf="@id/edit_senha1"
-        app:layout_constraintEnd_toEndOf="@id/edit_senha1"
-        app:layout_constraintTop_toTopOf="@id/edit_senha1"
-        app:layout_constraintBottom_toBottomOf="@id/edit_senha1"/>
-
-    <ImageView
-        android:id="@+id/eyeoff1"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/ic_eyeoff"
-        android:visibility="invisible"
+        android:background="@color/white"
         android:layout_marginLeft="200dp"
         app:layout_constraintStart_toStartOf="@id/edit_senha1"
         app:layout_constraintEnd_toEndOf="@id/edit_senha1"
@@ -113,23 +102,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_senha1"/>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/eye2"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/ic_eye"
-        android:layout_marginLeft="200dp"
-        app:layout_constraintStart_toStartOf="@id/edit_confirmar_senha"
-        app:layout_constraintEnd_toEndOf="@id/edit_confirmar_senha"
-        app:layout_constraintTop_toTopOf="@id/edit_confirmar_senha"
-        app:layout_constraintBottom_toBottomOf="@id/edit_confirmar_senha"/>
-
-    <ImageView
-        android:id="@+id/eyeoff2"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/ic_eyeoff"
-        android:visibility="invisible"
+        android:background="@color/white"
         android:layout_marginLeft="200dp"
         app:layout_constraintStart_toStartOf="@id/edit_confirmar_senha"
         app:layout_constraintEnd_toEndOf="@id/edit_confirmar_senha"

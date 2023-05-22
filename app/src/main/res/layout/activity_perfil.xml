@@ -71,6 +71,7 @@
         app:layout_constraintStart_toStartOf="@id/container_components3"
         />
 
+
     <TextView
         android:id="@+id/textNomeUsuario"
         android:layout_width="wrap_content"
@@ -178,7 +179,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_cadastrar"
+        android:id="@+id/bt_salvar"
         android:hint="Salvar"
         android:background="@drawable/button"
         android:textColorHint="@color/white"
