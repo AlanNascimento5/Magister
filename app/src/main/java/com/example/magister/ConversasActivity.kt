@@ -22,6 +22,7 @@ import com.xwray.groupie.Item
 
 class ConversasActivity : AppCompatActivity() {
 
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: GroupAdapter<GroupieViewHolder>
 
@@ -31,6 +32,8 @@ class ConversasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_conversas)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val username = intent.getStringExtra(NovaMensagemActivity.USER_KEY)
 
@@ -46,10 +49,10 @@ class ConversasActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
 
-        //adapter.add(ChatFromItem())
-        //adapter.add(ChatToItem())
-        //adapter.add(ChatFromItem())
-        //adapter.add(ChatToItem())
+        adapter.add(ChatFromItem("FROMM NEWW MESSAGE NIGGA"))
+        adapter.add(ChatToItem("TOMARA QUE FUNCIONE FALA TU"))
+        adapter.add(ChatFromItem("SE PA QUE VAI FUNCIONAR TA DE BOA"))
+        adapter.add(ChatToItem("ALELUIA"))
 
     }
 }

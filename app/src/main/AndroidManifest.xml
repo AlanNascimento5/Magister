@@ -16,7 +16,8 @@
             android:exported="false" />
         <activity
             android:name=".ConversasActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".NovaMensagemActivity"/>
         <activity
             android:name=".NovaMensagemActivity"
             android:exported="true"
