@@ -186,8 +186,8 @@ class FormCadastro : AppCompatActivity() {
         startActivity(TelaLogin)
     }
 
-    class User(val uid: String, val username: String, val profileImageUrl: String) {
-        constructor() : this(uid = "", username = "", profileImageUrl = "")
+    class Usuarios(val uid: String, val nome: String, val profileImageUrl: String) {
+        constructor() : this(uid = "", nome = "", profileImageUrl = "")
     }
 
 }

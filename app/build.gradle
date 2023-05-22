@@ -91,6 +91,8 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-kotlin-android-extensions:2.10.1"
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'com.google.firebase:firebase-firestore:23.0.1'
+
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

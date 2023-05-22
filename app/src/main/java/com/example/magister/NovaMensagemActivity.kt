@@ -1,21 +1,21 @@
 package com.example.magister
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.google.firebase.database.FirebaseDatabase
-//import com.google.firebase.firestore.auth.User
+import com.example.magister.ConversasActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import com.example.magister.R
-import com.example.magister.FormCadastro.User
+import com.example.magister.FormCadastro.Usuarios
 import com.squareup.picasso.Picasso
 
 class NovaMensagemActivity : AppCompatActivity() {
@@ -27,53 +27,53 @@ class NovaMensagemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nova_mensagem)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Select User"
 
         recyclerView = findViewById(R.id.newmessage)
         adapter = GroupAdapter()
 
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
         fetchUsers()
     }
 
     companion object {
-        val USER_KEY = "USER_KEY"
+        const val USER_KEY = "USER_KEY"
     }
 
     private fun fetchUsers() {
-        val ref = FirebaseDatabase.getInstance().getReference("/users")
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (snapshot in dataSnapshot.children) {
-                    val user = snapshot.getValue(User::class.java)
-                    if (user != null) {
-                        adapter.add(UserItem(user))
-                    }
-                }
-                //adapter.notifyDataSetChanged()
+        val db = FirebaseFirestore.getInstance()
+        val usersCollection = db.collection("Usuarios")
 
-                adapter.setOnItemClickListener { item, view ->
-                    val userItem = item as UserItem
-                    val intent = Intent(view.context, ConversasActivity::class.java)
-                    intent.putExtra(USER_KEY, userItem.user.username)
-                    //intent.putExtra(USER_KEY, userItem.user)
-                    startActivity(intent)
-                    finish()
+        usersCollection.get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val user = document.toObject(Usuarios::class.java)
+                    adapter.add(UserItem(user))
                 }
+                Log.d("NewMessage", "Users fetched successfully. Count: ${result.size()}")
+            }
+            .addOnFailureListener { exception ->
+                Log.d("NewMessage", "Error getting users: ${exception.message}")
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.d("NewMessage", databaseError.message)
-            }
-        })
+        adapter.setOnItemClickListener { item, view ->
+            val userItem = item as UserItem
+            val intent = Intent(view.context, ConversasActivity::class.java)
+            intent.putExtra(USER_KEY, userItem.user.nome)
+            startActivity(intent)
+            finish()
+        }
     }
 
-    inner class UserItem(val user: FormCadastro.User) : Item<GroupieViewHolder>() {
+    inner class UserItem(val user: Usuarios) : Item<GroupieViewHolder>() {
         override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-            viewHolder.itemView.findViewById<TextView>(R.id.username_textview_new_message).text = user.username
+            viewHolder.itemView.findViewById<TextView>(R.id.username_textview_new_message).text = user.nome
 
-            Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.findViewById<ImageView>(R.id.imageView))
+            //val imageView = viewHolder.itemView.findViewById<ImageView>(R.id.imageView)
+            //Picasso.get().load(user.profileImageUrl).into(imageView)
         }
 
         override fun getLayout(): Int {

@@ -27,17 +27,6 @@ class UltimasConversas : ComponentActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflar o menu
-        menuInflater.inflate(R.menu.nav_menu, menu)
-
-        // Obter referência para os itens do menu
-        val newMessageItem = menu.findItem(R.id.menu_new_message)
-        val signOutItem = menu.findItem(R.id.menu_sign_out)
-
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_new_message -> {

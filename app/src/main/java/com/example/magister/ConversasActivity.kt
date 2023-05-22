@@ -46,17 +46,17 @@ class ConversasActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
 
-        adapter.add(ChatFromItem())
-        adapter.add(ChatToItem())
-        adapter.add(ChatFromItem())
-        adapter.add(ChatToItem())
+        //adapter.add(ChatFromItem())
+        //adapter.add(ChatToItem())
+        //adapter.add(ChatFromItem())
+        //adapter.add(ChatToItem())
 
     }
 }
 
-class ChatFromItem: Item<GroupieViewHolder>() {
+class ChatFromItem(val text: String): Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        viewHolder.itemView.findViewById<TextView>(R.id.textview_from_row).text = "From Message......."
+        viewHolder.itemView.findViewById<TextView>(R.id.textview_from_row).text
     }
 
     override fun getLayout(): Int {
@@ -64,9 +64,9 @@ class ChatFromItem: Item<GroupieViewHolder>() {
     }
 }
 
-class ChatToItem: Item<GroupieViewHolder>() {
+class ChatToItem(val text: String): Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        viewHolder.itemView.findViewById<TextView>(R.id.textview_to_row).text = "This is the to row text message that is longer"
+        viewHolder.itemView.findViewById<TextView>(R.id.textview_to_row).text
     }
 
     override fun getLayout(): Int {

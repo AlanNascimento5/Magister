@@ -18,6 +18,11 @@
             android:name=".ConversasActivity"
             android:exported="false" />
         <activity
+            android:name=".NovaMensagemActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            />
+        <activity
             android:name=".FormLoginActivity"
             android:exported="true"
             android:label="@string/app_name"
