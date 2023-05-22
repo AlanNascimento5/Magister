@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.magister.NovaMensagemActivity.Companion.USER_KEY
+//import com.example.magister.NovaMensagemActivity.Companion.USER_KEY
 import com.example.magister.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
